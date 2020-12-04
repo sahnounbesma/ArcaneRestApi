@@ -2,68 +2,94 @@
 # pylint: disable=no-member
 from flask import Response, request
 from gestionImmob.database.models import Bien
+from gestionImmob.database.models import User
 from flask_restful import Resource
+import time, datetime, json
 
-
+########################## Les biens ###################################
 class BiensApi(Resource):
+  # Lister tous les biens
   def get(self):
-    movies = Bien.objects().to_json()
-    return Response(movies, mimetype="application/json", status=200)
-
-  def post(self):
+    biens = Bien.objects().to_json()
+    return Response(biens, mimetype="application/json", status=200)
+  
+  # Renseigner un bien
+  def post(self):   
     body = request.get_json()
-    movie = Bien(**body).save()
-    id = movie.id
-    return {'id': str(id)}, 200
+    bien = Bien(**body).save()
+    id = bien.id
+    return {'Le bien a été ajouté et son id est': str(id)}, 200
+
+
  
 class BienApi(Resource):
+  # modifier un bien selon son id
   def put(self, id):
     body = request.get_json()
     Bien.objects.get(id=id).update(**body)
-    return '', 200
+    return 'Modification des informations du bien avec succès', 200
  
+  # supprimer un bien selon son id
   def delete(self, id):
     bien = Bien.objects.get(id=id).delete()
-    return '', 200
+    return "Suppression de l'utilisateur avec succès", 200
 
+  # retrouver un bien selon son id
   def get(self, id):
-    movies = Bien.objects.get(id=id).to_json()
-    return Response(movies, mimetype="application/json", status=200)
+    biens = Bien.objects.get(id=id).to_json()
+    return Response(biens, mimetype="application/json", status=200)
 
+class BienCondApi(Resource):
+  # retrouver tous les biens selon la ville
+  def get(self, ville):
+    liste = []
+    biens = Bien.objects.filter(ville=ville).to_json()
+    return Response(biens, mimetype="application/json", status=200)
 
+########################## Les utilisateurs ###################################
+class UsersApi(Resource):
+  # Lister tous les utilisateurs
+  def get(self):
+    users = User.objects().to_json()
+    print(users)
+    return Response(users, mimetype="application/json", status=200)
+  # Renseigner un utilisateur
 
-# Blueprint
-"""
-from flask import Blueprint, Response, request
-from gestionImmob.database.models import Movie
-
-movies = Blueprint('movies', __name__)
-# pylint: disable=no-member
-@movies.route('/movies')
-def get_movies():
-    movies = Movie.objects().to_json()
-    return Response(movies, mimetype="application/json", status=200)
-
-@movies.route('/movies', methods=['POST'])
-def add_movie():
+  def post(self):
     body = request.get_json()
-    movie =  Movie(**body).save()
-    id = movie.id
-    return {'id': str(id)}, 200
+    var = body['date_naissance']
+    date_time_obj = datetime.datetime.strptime(var, '%d-%m-%Y')
+    body['date_naissance'] = date_time_obj
+    print("here it is", date_time_obj)
+    user = User(**body).save()
+    id = user.id
+    return {"L'utilisateur a bien été ajouté et son id est": str(id)}, 200
 
-@movies.route('/movies/<id>', methods=['PUT'])
-def update_movie(id):
+class UserApi(Resource):
+  # modifier les infos d'un utilisateur selon son id
+  def put(self, id):
     body = request.get_json()
-    Movie.objects.get(id=id).update(**body)
-    return '', 200
+    User.objects.get(id=id).update(**body)
+    return 'Modification des informations utilisateur avec succès', 200
 
-@movies.route('/movies/<id>', methods=['DELETE'])
-def delete_movie(id):
-    movie = Movie.objects.get(id=id).delete()
-    return '', 200
+  # supprimer un utilisateur selon son id
+  def delete(self, id):
+    user = User.objects.get(id=id).delete()
+    return "Suppression de l'utilisateur avec succès", 200
 
-@movies.route('/movies/<id>')
-def get_movie(id):
-    movies = Movie.objects.get(id=id).to_json()
-    return Response(movies, mimetype="application/json", status=200)
+  # retrouver un utilisateur selon son id
+  def get(self, id):
     """
+    i = User.objects.get(id=id)
+    print(i['date_naissance'])
+    i['date_naissance'] = json.dumps(i['date_naissance'], default = myconverter)
+    print(i)
+    users = i.to_json() """
+    users = User.objects.get(id=id).to_json()
+    return Response(users, mimetype="application/json", status=200)
+
+"""
+def myconverter(o):
+    if isinstance(o, datetime.datetime):
+        return o.__str__()
+"""
