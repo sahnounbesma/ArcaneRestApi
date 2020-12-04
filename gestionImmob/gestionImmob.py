@@ -53,7 +53,6 @@ class UsersApi(Resource):
     print(users)
     return Response(users, mimetype="application/json", status=200)
   # Renseigner un utilisateur
-
   def post(self):
     body = request.get_json()
     var = body['date_naissance']
