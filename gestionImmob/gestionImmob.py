@@ -42,7 +42,6 @@ class BienApi(Resource):
 class BienCondApi(Resource):
   # retrouver tous les biens selon la ville
   def get(self, ville):
-    liste = []
     biens = Bien.objects.filter(ville=ville).to_json()
     return Response(biens, mimetype="application/json", status=200)
 
