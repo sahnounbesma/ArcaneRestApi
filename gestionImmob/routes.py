@@ -1,5 +1,5 @@
-from .gestionImmob import BiensApi, BienApi, UserApi, UsersApi, BienCondApi
-from .auth import SignupApi, LoginApi
+from .bien import BiensApi, BienApi, BienCondApi
+from .auth import SignupApi, LoginApi, UserApi, UsersApi
 
 
 def initialize_routes(api):
