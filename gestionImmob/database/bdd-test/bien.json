@@ -1,0 +1,65 @@
+[{
+  "_id": {
+    "$oid": "5fce8ce4d5112aa0f1cb1194"
+  },
+  "nom": "maison de Jane",
+  "description": "belle est spacieuse",
+  "type_bien": "maison",
+  "ville": "Lille",
+  "pieces": 5,
+  "caracteristiques": [
+    "420m^2"
+  ],
+  "proprietaire": "JaneDoe",
+  "added_by": {
+    "$oid": "5fce8bb0d5112aa0f1cb1191"
+  }
+},{
+  "_id": {
+    "$oid": "5fce8d4cd5112aa0f1cb1195"
+  },
+  "nom": "Studio sympa",
+  "description": "au centre de paris",
+  "type_bien": "T2",
+  "ville": "Paris",
+  "pieces": 2,
+  "caracteristiques": [
+    "40m^2"
+  ],
+  "proprietaire": "BesmaShn",
+  "added_by": {
+    "$oid": "5fce8c3fd5112aa0f1cb1193"
+  }
+},{
+  "_id": {
+    "$oid": "5fce8d90d5112aa0f1cb1196"
+  },
+  "nom": "Appart Paris",
+  "description": "bien équipé",
+  "type_bien": "Appartement",
+  "ville": "Paris",
+  "pieces": 3,
+  "caracteristiques": [
+    "120m^2"
+  ],
+  "proprietaire": "JohnDoe",
+  "added_by": {
+    "$oid": "5fce8bd4d5112aa0f1cb1192"
+  }
+},{
+  "_id": {
+    "$oid": "5fce8db4d5112aa0f1cb1197"
+  },
+  "nom": "Appart Lyon",
+  "description": "très confortable",
+  "type_bien": "Appartement",
+  "ville": "Lyon",
+  "pieces": 4,
+  "caracteristiques": [
+    "210m^2"
+  ],
+  "proprietaire": "JohnDoe",
+  "added_by": {
+    "$oid": "5fce8bd4d5112aa0f1cb1192"
+  }
+}]

@@ -15,6 +15,7 @@ Dans le cadre d'un projet de création d'une application web de gestion immobili
 
 - installer les dépendances contenues dans le fichier requirements.txt 
 - git clone https://github.com/sahnounbesma/ArcaneRestApi.git
+- Une base de donnée contenant déjà des exemples a été déjà crée. Pour pouvoir l'utiliser, il faut créer une base de données sur MongoDb avec "gestion-immob" comme nom. Par la suite il faut créer deux collection "user" et "bien".  Dans chaque collection, il faut importer le fichier JSON associé     "user.json et "bien.json" respectivement. Les deux fichier JSON se trouve dans le dossier gestionImmob/databse/bdd-test . De plus, ce dossier contient un fichier texte contenant les pseudo avec les passwords non hashés appropriés afin de pouvoir réaliser l'authentification. 
 
 
 ## Démarrage
