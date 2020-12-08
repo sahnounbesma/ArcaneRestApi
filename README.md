@@ -111,6 +111,9 @@ Pour lancer le projet, exécutez : python run.py
 - Framework : Flask
 - Base de données : MongoDB
 
+## Remarque
+
+**** Le dossier documentation contient un fichier du diagramme entité-association relatif à l'étude de cas   
 
 
 ## Auteurs
