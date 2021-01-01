@@ -8,6 +8,8 @@ from flask_jwt_extended import create_access_token
 from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist
 from gestionImmob.errors import SchemaValidationError, PseudoAlreadyExistsError, UnauthorizedError, \
 InternalServerError
+import json
+from flask_cors import CORS, cross_origin
 
 class SignupApi(Resource):
   #créer un user
@@ -51,10 +53,21 @@ class LoginApi(Resource):
 
 class UsersApi(Resource):
   # Lister tous les utilisateurs
+  @cross_origin()
   def get(self):
     users = User.objects().to_json()
-    print(users)
-    return Response(users, mimetype="application/json", status=200)
+    users = json.loads(users)
+    users_tab = []
+    for us in users:
+      u ={}
+      u["id"] = us["_id"]
+      u["pseudo"] = us["pseudo"]
+      u["nom"] = us["nom"] 
+      u["prenom"] = us["prenom"] 
+      users_tab.append(u)
+    users_tab = json.dumps(users_tab)  
+    print(users_tab)
+    return Response(users_tab, mimetype="application/json", status=200)
   
   # Renseigner un utilisateur sans auth
   """

@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import {API_URL} from './env';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class UserService {
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
-  private usersUrl = 'api/users';  // URL to web api
+  private usersUrl = `${API_URL}/user`    //http://127.0.0.1:5000/api/user` ;  // URL to web api   //   
 
 	/** Log a HeroService message with the MessageService */
   private log(message: string) {
@@ -24,7 +25,7 @@ export class UserService {
   }; 
 
 
-  /** GET heroes from the server */
+  /** GET users from the server */
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl)
     .pipe(

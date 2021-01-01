@@ -4,9 +4,14 @@ from flask_restful import Api
 from gestionImmob.routes import initialize_routes
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS, cross_origin
+
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 't1NP63m4wnBg6nyHYKfmc2TpCOGI4nss'
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 api = Api(app)
 # sécurisation des mdp avec une fct de hashage
