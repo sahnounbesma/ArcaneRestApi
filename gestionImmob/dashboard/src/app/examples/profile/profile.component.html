@@ -1,25 +1,51 @@
 <div class="wrapper">
-    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/fabio-mangione.jpg');">
+    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/im2.jpg');">
         <div class="filter"></div>
     </div>
     <div class="section profile-content">
         <div class="container">
-            <div class="owner">
-                <div class="avatar">
-                    <img src="./assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                </div>
+            
+                    <ul style = "list-style-type: none;">
+                <div class="owner">
+                
                 <div class="name">
-                    <h4 class="title">Jane Faker<br /></h4>
-                    <h6 class="description">Music Producer</h6>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 ml-auto mr-auto text-center">
-                    <p>An artist of considerable range, Jane Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
+                    <li *ngFor="let user of usersList">
+                    <div class="avatar">
+                    <img src="./assets/img/faces/avatar.png" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                    </div>
+
+                        <h4 class="title">{{user.pseudo | uppercase}} {{user.id}}<br /></h4>
+                        <h6 class="description">Nom : {{user.nom}} </h6> <input [(ngModel)]="user.nom" placeholder="nom"/>
+                          <br>
+                          <br>
+                        <h6 class="description">Prénom : {{user.prenom}}</h6> <input [(ngModel)]="user.prenom" placeholder="prénom"/>
+                        <button (click)="save()">save</button>
                     <br />
-                    <button class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Settings</button>
+                    <br />
+                    <br />
+                    <br />
+                    <hr style ="background-color: #000000;">
+                    </li>
+                    <button (click)="save()">save</button>
+                       </div>
+                 </div>
+
+                    </ul> 
+                <!--    <h4 class="title">Jane Faker<br /></h4>
+                    <h6 class="description">Music Producer</h6> -->
+
+            <div class="row" >
+                <div class="col-md-6 ml-auto mr-auto text-center" routerLinkActive="active">
+                   <!-- <p>An artist of considerable range, Jane Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
+                    <br />  -->
+                    <a href="http://localhost:4200/#/signup" class="btn  btn-outline-default btn-round btn-lg"><i class="fa fa-plus"></i>Ajouter un utilisateur</a>
+                   <!-- <button class="btn btn-outline-default btn-round"><i class="fa fa-plus"></i> Ajouter un utilisateur </button> -->
                 </div>
-            </div>
+            </div> 
+
+
+
+            <!--
             <br/>
             <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
@@ -80,7 +106,7 @@
                         </ngb-tab>
                     </ngb-tabset>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

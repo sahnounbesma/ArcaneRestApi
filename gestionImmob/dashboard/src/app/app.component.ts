@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Renderer2, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, Renderer2, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
@@ -7,10 +7,11 @@ import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
 
-import {Subscription} from 'rxjs/Rx';
+//import {Subscription} from 'rxjs/Rx';
 import {UsersApiService} from './users/users-api.service';
 import {User} from './users/user.model';
-
+import {BiensApiService} from './biens/biens-api.service';
+import {Bien} from './biens/bien.model';
 
 
 @Component({
@@ -20,20 +21,31 @@ import {User} from './users/user.model';
 })
 export class AppComponent implements OnInit, OnDestroy {
     title = 'app';
-    usersListSubs: Subscription;
-    usersList: User[];
+    //usersListSubs: Subscription;
+    //usersList: User[];
+    //biensListSubs: Subscription;
+    //biensList: Bien[];
     private _router: Subscription;
     @ViewChild(NavbarComponent) navbar: NavbarComponent;
 
-    constructor( private usersApi: UsersApiService, private renderer : Renderer2, private router: Router, @Inject(DOCUMENT,) private document: any, private element : ElementRef, public location: Location) { this.usersList = []; }
+    constructor( private usersApi: UsersApiService, private biensApi: BiensApiService, private renderer : Renderer2, private router: Router, @Inject(DOCUMENT,) private document: any, private element : ElementRef, public location: Location) { //this.usersList = []; //this.biensList = [];
+    }
     ngOnInit() {
-        this.usersListSubs = this.usersApi
-          .getUsers()
-          .subscribe(res => {
-              this.usersList = res;
-            },
-            console.error
-         );
+        //this.usersListSubs = this.usersApi
+          //.getUsers()
+          //.subscribe(res => {
+            //  this.usersList = res;
+            //},
+            //console.error
+         //);
+
+         //this.biensListSubs = this.biensApi
+          //.getBiens()
+          //.subscribe(res => {
+            //  this.biensList = res;
+            //},
+            //console.error
+         //);
         var navbar : HTMLElement = this.element.nativeElement.children[0].children[0];
         this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
             if (window.outerWidth > 991) {
@@ -79,6 +91,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-      this.usersListSubs.unsubscribe();
+      //this.usersListSubs.unsubscribe();
+      //this.biensListSubs.unsubscribe();
     }
 }

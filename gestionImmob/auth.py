@@ -60,10 +60,12 @@ class UsersApi(Resource):
     users_tab = []
     for us in users:
       u ={}
-      u["id"] = us["_id"]
+      u["id"] = us["_id"]["$oid"]
       u["pseudo"] = us["pseudo"]
       u["nom"] = us["nom"] 
-      u["prenom"] = us["prenom"] 
+      u["prenom"] = us["prenom"]
+      u["date_naissance"] = us["date_naissance"]
+      u["biens"] = us["biens"] 
       users_tab.append(u)
     users_tab = json.dumps(users_tab)  
     print(users_tab)
@@ -84,17 +86,23 @@ class UsersApi(Resource):
 
 class UserApi(Resource):
   # modifier les infos d'un utilisateur selon son id
+  @cross_origin()
   def put(self, id):
+    print('ninouch')
+    print(request.data)
     body = request.get_json()
+    print(body)
     User.objects.get(id=id).update(**body)
     return 'Modification des informations utilisateur avec succès', 200
 
   # supprimer un utilisateur selon son id
+  @cross_origin()
   def delete(self, id):
     user = User.objects.get(id=id).delete()
     return "Suppression de l'utilisateur avec succès", 200
 
   # retrouver un utilisateur selon son id
+  @cross_origin()
   def get(self, id):
     users = User.objects.get(id=id).to_json()
     return Response(users, mimetype="application/json", status=200)

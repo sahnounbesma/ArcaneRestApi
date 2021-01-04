@@ -13,13 +13,29 @@ NotUniqueError, DoesNotExist, ValidationError, InvalidQueryError
 from gestionImmob.errors import SchemaValidationError, BienAlreadyExistsError, \
 InternalServerError, UpdatingBienError, DeletingBienError, BienNotExistsError
 
+import json
+from flask_cors import CORS, cross_origin
 
 ########################## Les biens ###################################
 class BiensApi(Resource):
   # Lister tous les biens
   def get(self):
     biens = Bien.objects().to_json()
-    return Response(biens, mimetype="application/json", status=200)
+    biens = json.loads(biens)
+    biens_tab = []
+    for b in biens:
+      u ={}
+      u["nom"] = b["nom"]
+      u["type_bien"] = b["type_bien"]
+      u["ville"] = b["ville"] 
+      u["pieces"] = b["pieces"] 
+      u["description"] = b["description"] 
+      u["proprietaire"] = b["proprietaire"] 
+      biens_tab.append(u)
+    biens_tab = json.dumps(biens_tab)  
+    print(biens_tab)
+    #biens = Bien.objects().to_json()
+    return Response(biens_tab, mimetype="application/json", status=200)
   
   # Renseigner un bien
   @jwt_required

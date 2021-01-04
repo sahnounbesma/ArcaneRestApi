@@ -5,7 +5,7 @@ export class User {
     //public password: string,
     public nom: string,
     public prenom: string,
-    //public date_naissance: string,
-    //public biens: string,
+    public date_naissance: string,
+    public biens: string,
   ) { }
 }

@@ -29,9 +29,9 @@
         </h6>
     </div>
     <div class="main">
-      <app-basicelements></app-basicelements>
-      <app-navigation></app-navigation>
-      <div class="section">
+      <!--<app-basicelements></app-basicelements> -->
+      <!--<app-navigation></app-navigation> -->
+     <!-- <div class="section">
           <div class="container">
               <div class="row">
                   <div class="col-md-6">
@@ -99,7 +99,7 @@
                   </div>
               </div>
           </div>
-      </div>
+      </div>  
       <div class="section section-notifications" id="notifications">
           <div class="container">
               <div class="tim-title">
@@ -107,9 +107,9 @@
               </div>
           </div>
           <app-notification></app-notification>
-      </div>
-      <app-typography></app-typography>
-      <div class="section javascript-components">
+      </div> -->
+      <!--<app-typography></app-typography> -->
+      <!--<div class="section javascript-components">
           <div class="container">
               <div class="tim-title">
                   <h2>Angular Native Components</h2>
@@ -190,32 +190,32 @@
                   </div>
               </div>
           </div>
-      </div>
+      </div>  -->
       <div class="section" id="carousel">
           <div class="container">
               <div class="tim-title">
-                  <h3>Carousel</h3>
+                  <h3>Type de logements proposés</h3>
               </div>
               <div class="row">
                   <div class="col-md-8 mr-auto ml-auto">
                       <div class="card page-carousel">
                           <ngb-carousel>
                               <ng-template ngbSlide>
-                                  <img src="./assets/img/soroush-karimi.jpg" alt="Random first slide">
+                                  <img src="./assets/img/appart.jpg" alt="Random first slide">
                                   <div class="carousel-caption">
-                                      <p>Somewhere</p>
+                                      <p>Appartement</p>
                                   </div>
                               </ng-template>
                               <ng-template ngbSlide>
-                                  <img src="./assets/img/federico-beccari.jpg" alt="Random second slide">
+                                  <img src="./assets/img/maison.jpg" alt="Random second slide">
                                   <div class="carousel-caption">
-                                      <p>Somewhere else</p>
+                                      <p>Maison</p>
                                   </div>
                               </ng-template>
                               <ng-template ngbSlide>
-                                  <img src="./assets/img/joshua-stannard.jpg" alt="Random third slide">
+                                  <img src="./assets/img/villa.jpg" alt="Random third slide">
                                   <div class="carousel-caption">
-                                      <p>Here it is</p>
+                                      <p>Villa</p>
                                   </div>
                               </ng-template>
                           </ngb-carousel>
@@ -228,33 +228,33 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
-                        <h2 class="title">Nucleo Icons</h2><br/>
-                        <p class="description">
-                            Now UI Kit comes with 100 custom icons made by our friends from NucleoApp. The official package contains over 2.100 thin icons which are looking great in combination with Now UI Kit Make sure you check all of them and use those that you like the most.
-                        </p><br/>
-                        <a [routerLink]="['/nucleoicons']" class="btn btn-danger btn-round">View Demo Icons</a>
-                        <a href="https://nucleoapp.com/?ref=1712" class="btn btn-outline-danger btn-round" target="_blank">View All Icons</a>
+                        <h2 class="title">Présentation de l'application</h2><br/>
+                        <p class="description" align="justify">
+                            L'application de gestion immobilière permet aux utilisateurs de visualiser l'ensemble des biens immobiliers disponible dans toutes les villes de France. De plus, elle permet à un utilisateur de créer un compte utilisateur pour pouvoir ajouter ses propores bien qu'il souhaite louer ou vendre. 
+                        </p><br/> 
+                        <a [routerLink]="['/user-profile']"class="btn btn-danger btn-round">Liste des utilisateurs</a> <!--[routerLink]="['/nucleoicons']" -->
+                        <a [routerLink]="['/landing']" class="btn btn-outline-danger btn-round" target="_blank">Liste des biens</a> <!--href="https://nucleoapp.com/?ref=1712"-->
                     </div>
 
                     <div class="col-lg-6 col-md-12">
                         <div class="icons-container">
-                            <i class="nc-icon nc-time-alarm"></i>
-                            <i class="nc-icon nc-atom"></i>
-                            <i class="nc-icon nc-camera-compact"></i>
-                            <i class="nc-icon nc-watch-time"></i>
+                            <i class="nc-icon nc-time-alarmm"></i>
+                            <i class="nc-icon nc-atomm"></i>
+                            <i class="nc-icon nc-camera-compactm"></i>
+                            <i class="nc-icon nc-watch-timem"></i>
+                            <i class="nc-icon nc-diamondm"></i>
                             <i class="nc-icon nc-key-25"></i>
-                            <i class="nc-icon nc-diamond"></i>
-                            <i class="nc-icon nc-user-run"></i>
-                            <i class="nc-icon nc-layout-11"></i>
-                            <i class="nc-icon nc-badge"></i>
-                            <i class="nc-icon nc-bulb-63"></i>
-                            <i class="nc-icon nc-favourite-28"></i>
-                            <i class="nc-icon nc-planet"></i>
-                            <i class="nc-icon nc-tie-bow"></i>
-                            <i class="nc-icon nc-zoom-split"></i>
-                            <i class="nc-icon nc-cloud-download-93"></i>
+                            <i class="nc-icon nc-user-runm"></i>
+                            <i class="nc-icon nc-layout-11m"></i>
+                            <i class="nc-icon nc-badgem"></i>
+                            <i class="nc-icon nc-bulb-63m"></i>
+                            <i class="nc-icon nc-favourite-28m"></i>
+                            <i class="nc-icon nc-planetm"></i>
+                            <i class="nc-icon nc-tie-bowm"></i>
+                            <i class="nc-icon nc-zoom-splitm"></i>
+                            <i class="nc-icon nc-cloud-download-93m"></i>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -262,19 +262,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto text-center">
-                        <h2 class="title">Completed with examples</h2>
-                        <p class="description">The kit comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go. More importantly, looking at them will give you a picture of what you can built with this powerful kit.</p>
+                        <h2 class="title">Connexion / Inscription</h2>
+                        <p class="description">Cette section est réservée pour la connexion des utilisareurs ou la création de compte utilisateur dans le cas où ces derniers n'ont pas de compte. </p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="section section-image section-login" style="background-image: url('assets/img/login-image.jpg');">
+        <div class="section section-image section-login" style="background-image: url('assets/img/login.jpg');">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-12 ml-auto mr-auto">
                         <div class="card card-register">
-                            <h3 class="title">Welcome</h3>
-                            <div class="social-line text-center">
+                            <h3 class="title">Bienvenue</h3>
+                            <!--<div class="social-line text-center">
                                 <a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
                                     <i class="fa fa-facebook-square"></i>
                                 </a>
@@ -284,42 +284,42 @@
                                 <a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
                                     <i class="fa fa-twitter"></i>
                                 </a>
-                            </div>
+                            </div> -->
                             <form class="register-form">
-                                <label>Email</label>
+                                <label>Pseudo</label>
                                 <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="nc-icon nc-email-85"></i>
+                                        <i class="nc-icon nc-circle-10"></i> <!-- email-85 -->
                                     </span>
                                   </div>
 
-                                    <input type="text" class="form-control" placeholder="Email" (focus)="focus=true" (blur)="focus=false" >
+                                    <input type="text" class="form-control" placeholder="Pseudo" (focus)="focus=true" (blur)="focus=false" >
                                 </div>
 
-                                <label>Password</label>
+                                <label>Mot de passe</label>
                                 <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <i class="nc-icon nc-key-25"></i>
                                     </span>
                                   </div>
-                                    <input type="text" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" >
+                                    <input type="text" class="form-control" placeholder="Mot de passe" (focus)="focus1=true" (blur)="focus1=false" >
                                 </div>
-                                <button class="btn btn-danger btn-block btn-round">Register</button>
+                                <button class="btn btn-danger btn-block btn-round">Se connecter</button>
                             </form>
                             <div class="forgot">
-                                <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
+                                <a href="#" class="btn btn-link btn-danger">Mot de passe oublié?</a>
                             </div>
                         </div>
                         <div class="col text-center" routerLinkActive="active">
-                            <a [routerLink]="['/signup']" class="btn btn-outline-neutral btn-round btn-lg">View Register Page</a>
+                            <a [routerLink]="['/signup']" class="btn btn-outline-neutral btn-round btn-lg">Page d'inscription</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="section section-dark">
+      <!--  <div class="section section-dark">
             <div class="container">
                 <div class="row example-page">
                     <div class="col-md-6 text-center" routerLinkActive="active">
@@ -337,8 +337,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="section">
+        </div>-->
+       <!-- <div class="section">
             <div class="container text-center">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto text-center">
@@ -370,8 +370,8 @@
                             <i class="fa fa-github"></i> Star
                         </a>
                     </div>
-                </div>
+                </div> 
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

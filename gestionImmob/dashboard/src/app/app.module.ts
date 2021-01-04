@@ -14,12 +14,9 @@ import { ExamplesModule } from './examples/examples.module';
 
 
 
-
 import {HttpClientModule} from '@angular/common/http';
-import {AppComponent} from './app.component';
 import {UsersApiService} from './users/users-api.service';
-
-
+import {BiensApiService} from './biens/biens-api.service';
 
 
 @NgModule({
@@ -38,7 +35,7 @@ import {UsersApiService} from './users/users-api.service';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [UsersApiService],
+  providers: [UsersApiService, BiensApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

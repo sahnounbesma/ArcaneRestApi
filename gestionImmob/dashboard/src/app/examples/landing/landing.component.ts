@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import {BiensApiService} from '../../biens/biens-api.service';
+import {Bien} from '../../biens/bien.model';
 
 @Component({
     selector: 'app-landing',
@@ -7,11 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class LandingComponent implements OnInit {
+  title = 'app';
+  biensListSubs: Subscription;
+  biensList: Bien[];
   focus: any;
   focus1: any;
 
-  constructor() { }
+  constructor(private biensApi: BiensApiService,) { this.biensList = []; }
 
-  ngOnInit() {}
+  ngOnInit() {
+         this.biensListSubs = this.biensApi
+          .getBiens()
+          .subscribe(res => {
+              this.biensList = res;
+            },
+            console.error
+         );}
+  
 
 }
