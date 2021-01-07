@@ -35,22 +35,60 @@
     <li *ngFor="let bien of biensList">
        <div class="card" style="width: 400px; margin: 0px auto; background-color: white; box-shadow: 0px 5px 20px #999; color: #333; 
        text-decoration: none;">
-        <a href="#">          
+       <!-- <a href="#">     -->     
 
         <!-- Corp de notre carte -->
         <div class="card-body" style="text-align:center;  padding: 15px 20px; box-sizing: border-box; ">
              <div class="icon icon-danger" style="font-size: large;">
-                              <i class="nc-icon nc-shop"></i>
+                 <i class="nc-icon nc-shop"></i>
             </div>
-                <h2 class="title"> {{bien.nom}} </h2>
+
+            <form (ngSubmit)="save(f)" #f="ngForm">
+                        <div class="form-group">
+                        <h4 class="info-title">Nom du bien: </h4>
+                        <input type="text" id="nom" class="form-control" name="nom" placeholder="{{bien.nom}}" [ngModel]=bien.nom>
+                        </div>
+                        <div class="form-group">
+                        <h4 class="info-title">Type du bien : </h4>
+                        <input type="text" id="type_bien" class="form-control" name="type_bien" placeholder="{{bien.type_bien}}" [ngModel]=bien.type_bien>
+                        </div>
+
+                        <div class="form-group">
+                        <h4 class="info-title"> Ville :</h4>
+                        <input type="text" id="ville" class="form-control" name="ville" placeholder="{{bien.ville}}" [ngModel]=bien.ville>
+                        </div>
+
+                        <div class="form-group">
+                        <h4 class="info-title"> Description du bien :  </h4>
+                        <input type="text" id="description" class="form-control" name="description" placeholder="{{bien.description}}" [ngModel]=bien.description>
+                        </div>
+
+                        <div class="form-group">
+                        <h4 class="info-title"> Nombre de pièces : </h4>
+                        <input type="text" id="pieces" class="form-control" name="pieces" placeholder="{{bien.pieces}}" [ngModel]=bien.pieces>
+                        </div>
+                        <div class="form-group">
+                        <h4 class="info-title"> Propriétaire : </h4>
+                        <input type="text" id="proprietaire" class="form-control" name="proprietaire" placeholder="{{bien.proprietaire}}" [ngModel]=bien.proprietaire>
+                        </div>
+                        <div class="form-group">
+                        <input type="hidden" id="id" class="form-control" name="id" [ngModel]=bien.id>
+                        </div>
+                    <button class="btn btn-success" type="submit" >Modifier</button>
+                    <!--<li routerLinkActive="active">
+                       <a [routerLink]="/signup"><p>Products Categories</p></a>
+                    </li> -->
+                    <button class="btn btn-danger" (click)="supp(f)">Supprimer</button>
+            </form>
+              <!--  <h2 class="title"> {{bien.nom}} </h2>
                 <h4 class="info-title"> Type du bien :</h4><h5 class="description">{{bien.type_bien}}</h5>
                 <h4 class="info-title"> Ville :  </h4><h5 class="description"> {{bien.ville}}</h5>
                 <h4 class="info-title"> Description du bien :  </h4><h5 class="description"> {{bien.description}}</h5>
                 <h4 class="info-title"> Nombre de pièces : </h4><h5 class="description"> {{bien.pieces}}</h5>
                 <h4 class="info-title"> Propriétaire : </h4> <h5 class="description"> {{bien.proprietaire}}</h5>
-
+                -->
         </div>
-            </a>
+          <!--  </a>  -->
 
          </div>
             <br>

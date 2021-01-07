@@ -102,17 +102,21 @@ export class UsersApiService {
     };
     user.id = id;
     const url = `${API_URL}/users/` + idUser;
-    //console.log('ya yemaaaa', this.head);
-    console.log('ya yemaaaa', this.localStorageService);
-    console.log('ya bababaa', this.localStorageService['storage']);
+    this.head = new HttpHeaders({ 'Content-Type': 'application/json', 'responseType': 'text' });
+    console.log('the header', this.head);
+    this.head = new HttpHeaders({ 'Content-Type': 'application/json', 'responseType': 'text' });
+    console.log('the header', this.head);
+    console.log('ya rebi la3ziz', this.localStorageService['storage']); 
     var pro = this.localStorageService['storage'];
     var t = pro['storage'];
-    console.log(t);
-    var j = t['local_token'];
-    console.log(j);
-    var he = new HttpHeaders(j);
-    console.log('the header', he);
-    return this.http.delete<User>(url).pipe();
+    var j = t['header'];
+    var hh = j; 
+    var ham = JSON.parse(hh);
+    console.log('baynaaaaaaa', ham);
+    var he = new HttpHeaders(ham);
+    console.log('the header normal', he);
+    var opts = { headers: he };
+    return this.http.delete<User>(url, opts).pipe();
 
   }
 
@@ -129,22 +133,13 @@ export class UsersApiService {
     const token = this.http.post<User>(url, user, this.httpOptions).pipe();
     const j = token.subscribe( value => { this.k = value;  
     this.kraht = this.localStorageService.storeOnLocalStorage(this.k);
-    //this.head = new HttpHeaders(this.kraht);
-    //console.log('here is the token', this.k);
-    //console.log(this.h);
-    //console.log('ya 9otchatah', this.kraht);
-    //console.log('wa3333', this.head);
     } );
     var pro = this.localStorageService['storage'];
     var t = pro['storage'];
     var j = t['local_token'];
-    //console.log('Ive got a fever', j);
     var bes = j.substring(1, j.length - 1);
     var hh = bes.replace(/{"token":"/g, "\"Bearer ");
     hh = hh.substring(0, hh.length - 1);
-    //console.log('baynaaaaaaa', hh);
-    //var hh = bes.replace(/"/g, "'");
-    //var bzf = hh.substring(1, j.length - 1);
     var ham = JSON.parse(hh);
     var he = new HttpHeaders(ham);
     console.log('he----------->',he);
@@ -157,11 +152,6 @@ export class UsersApiService {
     console.log('hama khaytii', ham);
     var nchallah = this.localStorageService.storeHeader(ham);
     console.log('ya rebi la3ziz', this.localStorageService['storage']); 
-    //var v1 = this.localStorageService['storage'];
-    //var v2 = v1['storage'];
-    //var v3 = v2['header'];
-    //console.log('ha howa', v3);
-    //this.localStorage['header']; 
     return this.http.post<User>(url, user, this.head).pipe();
 
   }

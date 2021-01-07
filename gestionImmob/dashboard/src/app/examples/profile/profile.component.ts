@@ -45,11 +45,11 @@ export class ProfileComponent implements OnInit {
      const pseudo = form.value['pseudo'];
      this.usersApi.updateUser(id, nom, prenom, pseudo)
          .subscribe(res => {console.log(res);
+         this.usersListSubs = this.usersApi.getUsers()
+             .subscribe(res => {this.usersList = res;},
+             console.error
+          );
     });
-    this.usersListSubs = this.usersApi.getUsers()
-          .subscribe(res => {this.usersList = res;},
-            console.error
-         );
   }
 
   supp(form: NgForm) {
@@ -57,11 +57,11 @@ export class ProfileComponent implements OnInit {
     const id = form.value['id'];
     this.usersApi.deleteUser(id)
         .subscribe(res => {console.log(res);
-    });
-    this.usersListSubs = this.usersApi.getUsers()
-          .subscribe(res => {this.usersList = res;},
+        this.usersListSubs = this.usersApi.getUsers()
+            .subscribe(res => {this.usersList = res;},
             console.error
-         );
+            );
+        });
   }
 
   }

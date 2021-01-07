@@ -25,6 +25,7 @@ class BiensApi(Resource):
     biens_tab = []
     for b in biens:
       u ={}
+      u["id"] = b["_id"]["$oid"]
       u["nom"] = b["nom"]
       u["type_bien"] = b["type_bien"]
       u["ville"] = b["ville"] 
@@ -43,12 +44,12 @@ class BiensApi(Resource):
     try:
       user_id = get_jwt_identity()
       body = request.get_json()
-      #bien = Bien(**body).save()
-      user = User.objects.get(id=user_id)
-      bien = Bien(**body, added_by=user)
+      bien = Bien(**body).save()
+      #user = User.objects.get(id=user_id)
+      #bien = Bien(**body, added_by=user)
       bien.save()
-      user.update(push__biens=bien)
-      user.save()
+      #user.update(push__biens=bien)
+      #user.save()
       id = bien.id
       return {'Le bien a été ajouté et son id est': str(id)}, 200
     except (FieldDoesNotExist, ValidationError):
@@ -59,14 +60,18 @@ class BiensApi(Resource):
         raise InternalServerError
 
 
+
 class BienApi(Resource):
   # modifier un bien selon son id
-  @jwt_required
+  @cross_origin()
   def put(self, id):
     try:
-      user_id = get_jwt_identity()
-      bien = Bien.objects.get(id=id, added_by=user_id)
+      #user_id = get_jwt_identity()
+      #bien = Bien.objects.get(id=id, added_by=user_id)   avec auth
+      #bien = Bien.objects.get(id=id)
+      print('hiii bitch')
       body = request.get_json()
+      print(request.data)
       Bien.objects.get(id=id).update(**body)
       return 'Modification des informations du bien avec succès', 200
     except InvalidQueryError:

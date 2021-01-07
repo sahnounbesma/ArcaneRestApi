@@ -104,8 +104,10 @@ class UserApi(Resource):
     return 'Modification des informations utilisateur avec succès', 200
 
   # supprimer un utilisateur selon son id
+  @jwt_required
   @cross_origin()
   def delete(self, id):
+    print("ya hamoudaaaaaaaa")
     h = request.headers
     print(h)
     user = User.objects.get(id=id).delete()

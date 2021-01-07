@@ -58,7 +58,8 @@ export class ComponentsComponent implements OnInit {
      const password = form.value['password'];
      this.usersApi.connect(pseudo, password)
          .subscribe(res => {console.log(res);
-    });
+         });
+     location.replace('/#/user-profile'); 
     }
 
 }

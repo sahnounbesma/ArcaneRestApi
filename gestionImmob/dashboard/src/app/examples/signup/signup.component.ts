@@ -38,6 +38,7 @@ export class SignupComponent implements OnInit {
      this.usersApi.addUser(nom, prenom, pseudo, password, date_naissance)
          .subscribe(res => {console.log(res);
     });
+    location.replace('/#/');
   }
 
 
