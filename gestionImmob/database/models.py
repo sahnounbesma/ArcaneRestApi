@@ -17,11 +17,11 @@ class Bien(db.Document):
     added_by = db.ReferenceField('User')
 
 class User(db.Document):
-    pseudo = db.StringField(required=True, unique=True)
-    password= db.StringField(required=True)
+    pseudo = db.StringField(required=False, unique=True)
+    password= db.StringField(required=False)
     nom = db.StringField(required=True)
     prenom = db.StringField(required=True)
-    date_naissance = db.DateTimeField(required=True) 
+    date_naissance = db.DateTimeField(required=False) 
     biens = db.ListField(db.ReferenceField('Bien', reverse_delete_rule=db.PULL)) 
     def hash_password(self):
         self.password = generate_password_hash(self.password).decode('utf8')

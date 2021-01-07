@@ -17,6 +17,10 @@ import { ExamplesModule } from './examples/examples.module';
 import {HttpClientModule} from '@angular/common/http';
 import {UsersApiService} from './users/users-api.service';
 import {BiensApiService} from './biens/biens-api.service';
+import {LocalStorageService} from './localStorage.service';
+import { StorageServiceModule } from 'ngx-webstorage-service';
+import { IonicStorageModule } from '@ionic/storage';
+import {TokenInterceptorService} from './TokenInterceptor.service';
 
 
 @NgModule({
@@ -34,8 +38,10 @@ import {BiensApiService} from './biens/biens-api.service';
     ExamplesModule,
     AppRoutingModule,
     HttpClientModule,
+    StorageServiceModule,
+    IonicStorageModule.forRoot(),
   ],
-  providers: [UsersApiService, BiensApiService],
+  providers: [UsersApiService, BiensApiService, LocalStorageService,TokenInterceptorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,7 +6,6 @@ import {User} from '../../users/user.model';
 import { Location } from '@angular/common';
 
 
-
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
@@ -39,8 +38,30 @@ export class ProfileComponent implements OnInit {
   this.location.back();
   }
 
-  save(): void {
-  this.usersApi.updateUser(this.user)
-    .subscribe(() => this.goBack());
-  }     
-    }
+  save(form: NgForm) {
+     const nom = form.value['nom'];
+     const prenom = form.value['prenom'];
+     const id = form.value['id'];
+     const pseudo = form.value['pseudo'];
+     this.usersApi.updateUser(id, nom, prenom, pseudo)
+         .subscribe(res => {console.log(res);
+    });
+    this.usersListSubs = this.usersApi.getUsers()
+          .subscribe(res => {this.usersList = res;},
+            console.error
+         );
+  }
+
+  supp(form: NgForm) {
+    console.log(form.value);
+    const id = form.value['id'];
+    this.usersApi.deleteUser(id)
+        .subscribe(res => {console.log(res);
+    });
+    this.usersListSubs = this.usersApi.getUsers()
+          .subscribe(res => {this.usersList = res;},
+            console.error
+         );
+  }
+
+  }

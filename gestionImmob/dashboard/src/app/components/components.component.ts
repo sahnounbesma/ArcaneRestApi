@@ -1,5 +1,11 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2 ,Input} from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
+import { Subscription } from 'rxjs/Subscription';
+import {UsersApiService} from '../users/users-api.service';
+import {User} from '../users/user.model';
+import { Location } from '@angular/common';
+
 
 @Component({
     selector: 'app-components',
@@ -19,7 +25,11 @@ export class ComponentsComponent implements OnInit {
     focus2;
     date: {year: number, month: number};
     model: NgbDateStruct;
-    constructor( private renderer : Renderer2) {}
+    @Input() user: User;
+
+    private _router: Subscription;
+
+    constructor( private renderer : Renderer2, private usersApi: UsersApiService,  private location: Location) {}
     isWeekend(date: NgbDateStruct) {
         const d = new Date(date.year, date.month - 1, date.day);
         return d.getDay() === 0 || d.getDay() === 6;
@@ -40,6 +50,15 @@ export class ComponentsComponent implements OnInit {
                 input_group[i].classList.remove('input-group-focus');
             });
         }
+    }
+
+    save(form: NgForm) {
+     console.log(form.value);
+     const pseudo = form.value['pseudo'];
+     const password = form.value['password'];
+     this.usersApi.connect(pseudo, password)
+         .subscribe(res => {console.log(res);
+    });
     }
 
 }

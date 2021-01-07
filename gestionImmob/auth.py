@@ -9,6 +9,7 @@ from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist
 from gestionImmob.errors import SchemaValidationError, PseudoAlreadyExistsError, UnauthorizedError, \
 InternalServerError
 import json
+from flask_jwt_extended import jwt_required,  get_jwt_identity
 from flask_cors import CORS, cross_origin
 
 class SignupApi(Resource):
@@ -35,6 +36,7 @@ class LoginApi(Resource):
   # connexion d'un user
  def post(self):
    try:
+     print('merhba bik zinoun')
      body = request.get_json()
      user = User.objects.get(pseudo=body.get('pseudo'))
      authorized = user.check_password(str(body.get('password')))
@@ -43,7 +45,9 @@ class LoginApi(Resource):
 
      expires = datetime.timedelta(days=7)
      access_token = create_access_token(identity=str(user.id), expires_delta=expires)
+     print(str(access_token))
      return {'token': access_token}, 200
+     #return access_token
    except (UnauthorizedError, DoesNotExist):
        raise UnauthorizedError
    except Exception as e:
@@ -72,32 +76,38 @@ class UsersApi(Resource):
     return Response(users_tab, mimetype="application/json", status=200)
   
   # Renseigner un utilisateur sans auth
-  """
+  @cross_origin()
   def post(self):
+    print('ninouch')
+    print(request.data)
     body = request.get_json()
     var = body['date_naissance']
     date_time_obj = datetime.datetime.strptime(var, '%d-%m-%Y')
     body['date_naissance'] = date_time_obj
-    print("here it is", date_time_obj)
+    #print("here it is", date_time_obj)
     user = User(**body).save()
     id = user.id
     return {"L'utilisateur a bien été ajouté et son id est": str(id)}, 200
-   """
+   
 
 class UserApi(Resource):
   # modifier les infos d'un utilisateur selon son id
+  @jwt_required
   @cross_origin()
   def put(self, id):
     print('ninouch')
     print(request.data)
     body = request.get_json()
     print(body)
+    print('header', request.headers)
     User.objects.get(id=id).update(**body)
     return 'Modification des informations utilisateur avec succès', 200
 
   # supprimer un utilisateur selon son id
   @cross_origin()
   def delete(self, id):
+    h = request.headers
+    print(h)
     user = User.objects.get(id=id).delete()
     return "Suppression de l'utilisateur avec succès", 200
 

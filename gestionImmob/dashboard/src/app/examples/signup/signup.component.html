@@ -17,16 +17,19 @@
                                   <i class="fa fa-twitter"></i>
                               </a>
                           </div>  -->
-                          <form class="register-form">
+                          <form (ngSubmit)="save(f)" #f="ngForm">
+                            <div class="form-group">
                               <label>Nom</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text">
                                       <i class="nc-icon nc-badge"></i>
                                   </span>
-                                </div>
-                                  <input type="text" class="form-control" placeholder="Nom" (focus)="focus1=true" (blur)="focus1=false" >
+                                </div>  
+                                  <input type="text" id="nom" class="form-control" name="nom" placeholder="Nom" (focus)="focus1=true" (blur)="focus1=false" ngModel>
                               </div>
+                            </div>
+                            <div class="form-group">
                               <label>Prénom</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
                                 <div class="input-group-prepend">
@@ -34,8 +37,10 @@
                                       <i class="nc-icon nc-badge"></i>
                                   </span>
                                 </div>
-                                  <input type="text" class="form-control" placeholder="Prénom" (focus)="focus1=true" (blur)="focus1=false" >
+                                  <input type="text" id="prenom" class="form-control" name="prenom" placeholder="Prénom" (focus)="focus1=true" (blur)="focus1=false" ngModel>
                               </div>
+                            </div>
+                            <div class="form-group">
                               <label>Date de naissance</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
                                 <div class="input-group-prepend">
@@ -43,8 +48,10 @@
                                       <i class="nc-icon nc-badge"></i>
                                   </span>
                                 </div>
-                                  <input type="text" class="form-control" placeholder="Date de naissance" (focus)="focus1=true" (blur)="focus1=false" >
+                                  <input type="text" id="date_naissance" class="form-control" name="date_naissance" placeholder="jj-mm-aaaa" (focus)="focus1=true" (blur)="focus1=false" ngModel>
                               </div>
+                            </div>
+                            <div class="form-group">
                               <label>Pseudo</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
                                 <div class="input-group-prepend">
@@ -53,9 +60,10 @@
                                   </span>
                                 </div>
 
-                                  <input type="text" class="form-control" placeholder="Pseudo" (focus)="focus=true" (blur)="focus=false" >
+                                  <input type="text" id="pseudo" class="form-control" name="pseudo" placeholder="Pseudo" (focus)="focus=true" (blur)="focus=false" ngModel>
                               </div>
-
+                            </div>
+                            <div class="form-group">
                               <label>Password</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
                                 <div class="input-group-prepend">
@@ -63,9 +71,10 @@
                                       <i class="nc-icon nc-key-25"></i>
                                   </span>
                                 </div>
-                                  <input type="text" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" >
+                                  <input type="password" id="password" class="form-control" name="password"  placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" ngModel>
                               </div>
-                              <button class="btn btn-danger btn-block btn-round">S'inscrire</button>
+                            </div>
+                              <button class="btn btn-danger btn-block btn-round" type="submit">S'inscrire</button>
                           </form>
                       <!--    <div class="forgot">
                               <a href="#" class="btn btn-link btn-danger">Forgot password?</a>

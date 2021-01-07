@@ -14,19 +14,45 @@
                     <img src="./assets/img/faces/avatar.png" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                     </div>
 
+                <div class="row">
+                <div class="col-sm-4 ml-auto mr-auto text-center">
+                    <h4 class="title">{{user.pseudo | uppercase}}<br /></h4>
+                    <form (ngSubmit)="save(f)" #f="ngForm">
+                        <div class="form-group">
+                        <h6 class="description">Nom : </h6>
+                        <input type="text" id="nom" class="form-control" name="nom" placeholder="{{user.nom}}" [ngModel]=user.nom>
+                        </div>
+                        <div class="form-group">
+                        <h6 class="description">Prénom : </h6>
+                        <input type="text" id="prenom" class="form-control" name="prenom" placeholder="{{user.prenom}}" [ngModel]=user.prenom>
+                        </div>
+                        <div class="form-group">
+                        <h6 class="description">Pseudo : </h6>
+                        <input type="text" id="pseudo" class="form-control" name="pseudo" placeholder="{{user.pseudo}}" [ngModel]=user.pseudo>
+                        </div>
+                        <div class="form-group">
+                        <input type="hidden" id="id" class="form-control" name="id" [ngModel]=user.id>
+                        </div>
+                    <button class="btn btn-success" type="submit">Modifier</button>
+                    <button class="btn btn-danger" (click)="supp(f)">Supprimer</button>
+                    </form>
+                </div>
+                </div>
+                       <!--
                         <h4 class="title">{{user.pseudo | uppercase}} {{user.id}}<br /></h4>
                         <h6 class="description">Nom : {{user.nom}} </h6> <input [(ngModel)]="user.nom" placeholder="nom"/>
                           <br>
                           <br>
                         <h6 class="description">Prénom : {{user.prenom}}</h6> <input [(ngModel)]="user.prenom" placeholder="prénom"/>
-                        <button (click)="save()">save</button>
+                        
+                        <button (click)="save()">save</button> -->
                     <br />
                     <br />
                     <br />
                     <br />
                     <hr style ="background-color: #000000;">
                     </li>
-                    <button (click)="save()">save</button>
+                   
                        </div>
                  </div>
 
