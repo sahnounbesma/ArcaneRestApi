@@ -40,16 +40,19 @@ class BiensApi(Resource):
   
   # Renseigner un bien
   @jwt_required
+  @cross_origin()
   def post(self):   
     try:
+      print('hello world')
       user_id = get_jwt_identity()
+      print(user_id)
       body = request.get_json()
-      bien = Bien(**body).save()
-      #user = User.objects.get(id=user_id)
-      #bien = Bien(**body, added_by=user)
+     # bien = Bien(**body).save()
+      user = User.objects.get(id=user_id)
+      bien = Bien(**body, added_by=user)
       bien.save()
-      #user.update(push__biens=bien)
-      #user.save()
+      user.update(push__biens=bien)
+      user.save()
       id = bien.id
       return {'Le bien a été ajouté et son id est': str(id)}, 200
     except (FieldDoesNotExist, ValidationError):
@@ -63,15 +66,16 @@ class BiensApi(Resource):
 
 class BienApi(Resource):
   # modifier un bien selon son id
+  @jwt_required
   @cross_origin()
   def put(self, id):
     try:
-      #user_id = get_jwt_identity()
-      #bien = Bien.objects.get(id=id, added_by=user_id)   avec auth
-      #bien = Bien.objects.get(id=id)
-      print('hiii bitch')
+      user_id = get_jwt_identity()
+      print(user_id)
+      bien = Bien.objects.get(id=id, added_by=user_id)   
+     # bien = Bien.objects.get(id=id)
       body = request.get_json()
-      print(request.data)
+     # print(request.data)
       Bien.objects.get(id=id).update(**body)
       return 'Modification des informations du bien avec succès', 200
     except InvalidQueryError:
@@ -84,10 +88,13 @@ class BienApi(Resource):
 
   # supprimer un bien selon son id
   @jwt_required
+  @cross_origin()
   def delete(self, id):
     try:
       user_id = get_jwt_identity()
       bien = Bien.objects.get(id=id, added_by=user_id)
+      print('aniiii hnaaa', bien['added_by'])
+      #bien = Bien.objects.get(id=id)
       bien.delete()
       return "Suppression de l'utilisateur avec succès", 200
     except DoesNotExist:
@@ -111,3 +118,15 @@ class BienCondApi(Resource):
     biens = Bien.objects.filter(ville=ville).to_json()
     return Response(biens, mimetype="application/json", status=200)
 
+
+class BienCondTypeApi(Resource):
+  # retrouver tous les biens selon son type   
+  def get(self, type_bien):
+    biens = Bien.objects.filter(type_bien=type_bien).to_json()
+    return Response(biens, mimetype="application/json", status=200)
+
+class BienCondPiecesApi(Resource):
+  # retrouver tous les biens selon son type   
+  def get(self, pieces):
+    biens = Bien.objects.filter(pieces=pieces).to_json()
+    return Response(biens, mimetype="application/json", status=200)

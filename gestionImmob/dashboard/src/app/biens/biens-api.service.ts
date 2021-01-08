@@ -4,11 +4,12 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';  
 import {API_URL} from '../env';
 import {Bien} from './bien.model';
+import { LocalStorageService } from '../localStorage.service';
 
 @Injectable()
 export class BiensApiService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private localStorageService: LocalStorageService) {
   }
 
   httpOptions = {
@@ -21,13 +22,34 @@ export class BiensApiService {
 
 
   public getBiens(): Observable<Bien[]>  {
+    console.log('hamouda', this.localStorageService);
     return this.http.get<Bien[]>(`${API_URL}/bien`);
   }
 
 
+  public searchBienVille(ville: string): Observable<Bien[]>  {
+    const ville = ville;
+    const url = `${API_URL}/biens/ville/`+ ville; 
+    return this.http.get<Bien[]>(url);
+  }
 
 
-     /** PUT: update a user */
+  public searchBienType(type_bien: string): Observable<Bien[]>  {
+    const type_bien = type_bien;
+    const url = `${API_URL}/biens/type/`+ type_bien; 
+    return this.http.get<Bien[]>(url);
+  }
+
+
+  public searchBienPiece(pieces: string): Observable<Bien[]>  {
+    const pieces = pieces;
+    const url = `${API_URL}/biens/pieces/`+ pieces; 
+    return this.http.get<Bien[]>(url);
+  }
+
+
+
+     /** PUT: update a bien */
   public updateBien(id: string, nom: string, description: string, type_bien: string, ville: string, pieces: string, caracteristiques: string, proprietaire:string): Observable<Bien> {
     const idBien = id;
     const url = `${API_URL}/biens/` + idBien;
@@ -49,7 +71,16 @@ export class BiensApiService {
     bien.pieces = pieces;
     bien.caracteristiques = caracteristiques;
     bien.proprietaire = proprietaire;
-    return this.http.put<Bien>(url, bien, this.httpOptions).pipe();
+    var pro = this.localStorageService['storage'];
+    var t = pro['storage'];
+    var j = t['header'];
+    var hh = j; 
+    var ham = JSON.parse(hh);
+    console.log('baynaaaaaaa', ham);
+    var he = new HttpHeaders(ham);
+    console.log('the header normal', he);
+    var opts = { headers: he };
+    return this.http.put<Bien>(url, bien, opts).pipe();
 
   }
 
@@ -62,7 +93,48 @@ export class BiensApiService {
     };
     bien.id = id;
     const url = `${API_URL}/biens/` + idBien;
-    return this.http.delete<Bien>(url, httpOptions).pipe();
+    var pro = this.localStorageService['storage'];
+    var t = pro['storage'];
+    var j = t['header'];
+    var hh = j; 
+    var ham = JSON.parse(hh);
+    console.log('baynaaaaaaa', ham);
+    var he = new HttpHeaders(ham);
+    console.log('the header normal', he);
+    var opts = { headers: he };
+    return this.http.delete<Bien>(url, opts).pipe();
+
+  }
+
+  /** Post: add a bien*/
+  public addBien(nom: string, description: string, type_bien: string, ville: string, pieces: string, caracteristiques: string, proprietaire:string): Observable<Bien> {
+    const url = `${API_URL}/bien`;
+    const bien = {
+      nom: '',
+      description: '',
+      type_bien: '',
+      ville: '',
+      pieces: '',
+      caracteristiques: '',
+      proprietaire: ''
+    };
+    bien.nom = nom;
+    bien.description = description;
+    bien.type_bien = type_bien;
+    bien.ville = ville;
+    bien.pieces = pieces;
+    bien.caracteristiques = caracteristiques;
+    bien.proprietaire = proprietaire;
+    var pro = this.localStorageService['storage'];
+    var t = pro['storage'];
+    var j = t['header'];
+    var hh = j; 
+    var ham = JSON.parse(hh);
+    console.log('baynaaaaaaa', ham);
+    var he = new HttpHeaders(ham);
+    console.log('the header normal', he);
+    var opts = { headers: he };
+    return this.http.post<Bien>(url, bien, opts).pipe();
 
   }
 }
