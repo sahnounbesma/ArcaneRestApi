@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 import {BiensApiService} from '../../biens/biens-api.service';
 import {Bien} from '../../biens/bien.model';
 import { Location } from '@angular/common';
-
+import { NgForm }   from '@angular/forms';
 
 
 @Component({

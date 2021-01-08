@@ -131,13 +131,13 @@ export class UsersApiService {
     user.pseudo = pseudo;
     user.password = password; 
     const token = this.http.post<User>(url, user, this.httpOptions).pipe();
-    const j = token.subscribe( value => { this.k = value;  
+    const f = token.subscribe( value => { this.k = value;  
     this.kraht = this.localStorageService.storeOnLocalStorage(this.k);
-    } );
+    } );  // changer here also   const j
     var pro = this.localStorageService['storage'];
     var t = pro['storage'];
     var j = t['local_token'];
-    var bes = j.substring(1, j.length - 1);
+    var bes = (j as unknown as string).substring(1, (j as unknown as string).length - 1);   // changed here
     var hh = bes.replace(/{"token":"/g, "\"Bearer ");
     hh = hh.substring(0, hh.length - 1);
     var ham = JSON.parse(hh);
@@ -152,7 +152,7 @@ export class UsersApiService {
     console.log('hama khaytii', ham);
     var nchallah = this.localStorageService.storeHeader(ham);
     console.log('ya rebi la3ziz', this.localStorageService['storage']); 
-    return this.http.post<User>(url, user, this.head).pipe();
+    return this.http.post<User>(url, user, this.httpOptions).pipe();
 
   }
 

@@ -28,22 +28,22 @@ export class BiensApiService {
 
 
   public searchBienVille(ville: string): Observable<Bien[]>  {
-    const ville = ville;
-    const url = `${API_URL}/biens/ville/`+ ville; 
+    const villeParam = ville;
+    const url = `${API_URL}/biens/ville/`+ villeParam; 
     return this.http.get<Bien[]>(url);
   }
 
 
   public searchBienType(type_bien: string): Observable<Bien[]>  {
-    const type_bien = type_bien;
-    const url = `${API_URL}/biens/type/`+ type_bien; 
+    const type_bienParam = type_bien;
+    const url = `${API_URL}/biens/type/`+ type_bienParam; 
     return this.http.get<Bien[]>(url);
   }
 
 
   public searchBienPiece(pieces: string): Observable<Bien[]>  {
-    const pieces = pieces;
-    const url = `${API_URL}/biens/pieces/`+ pieces; 
+    const piecesParam = pieces;
+    const url = `${API_URL}/biens/pieces/`+ piecesParam; 
     return this.http.get<Bien[]>(url);
   }
 

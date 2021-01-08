@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 import {UsersApiService} from '../../users/users-api.service';
 import {User} from '../../users/user.model';
 import { Location } from '@angular/common';
-
+import { NgForm }   from '@angular/forms';
 
 
 
