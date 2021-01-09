@@ -1,8 +1,9 @@
-from .bien import BiensApi, BienApi, BienCondApi, BienCondTypeApi, BienCondPiecesApi 
+from .bien import BiensApi, BienApi, BienCondApi, BienCondTypeApi, BienCondPiecesApi , TestApi
 from .auth import SignupApi, LoginApi, UserApi, UsersApi
 
 
 def initialize_routes(api):
+ api.add_resource(TestApi, '/')
  api.add_resource(BiensApi, '/api/bien')
  api.add_resource(BienApi, '/api/biens/<id>')
  api.add_resource(BienCondApi, '/api/biens/ville/<ville>')

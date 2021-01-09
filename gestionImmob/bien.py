@@ -16,6 +16,8 @@ InternalServerError, UpdatingBienError, DeletingBienError, BienNotExistsError
 import json
 from flask_cors import CORS, cross_origin
 
+
+
 ########################## Les biens ###################################
 class BiensApi(Resource):
   # Lister tous les biens
@@ -130,3 +132,9 @@ class BienCondPiecesApi(Resource):
   def get(self, pieces):
     biens = Bien.objects.filter(pieces=pieces).to_json()
     return Response(biens, mimetype="application/json", status=200)
+
+
+class TestApi(Resource):
+  def get(self):
+    rep = "<h1>Welcome to our server !!</h1>"
+    return Response(rep, mimetype="application/json", status=200)
