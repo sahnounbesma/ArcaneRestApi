@@ -1,1 +1,1 @@
-web: gunicorn app:gestionImmob
+web: gunicorn gestionImmob:app
