@@ -1,1 +1,1 @@
-web: gunicorn gestionImmob:app
+web: gunicorn gestionImmob:app --log-file=-
