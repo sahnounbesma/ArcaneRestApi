@@ -3,7 +3,7 @@
 # pylint: disable=E0402
 from mongoengine import StringField
 from .db import db
-from flask_bcrypt import generate_password_hash, check_password_hash
+#from flask_bcrypt import generate_password_hash, check_password_hash
 
 # pylint: disable=no-member
 class Bien(db.Document):
@@ -23,10 +23,10 @@ class User(db.Document):
     prenom = db.StringField(required=True)
     date_naissance = db.DateTimeField(required=False) 
     biens = db.ListField(db.ReferenceField('Bien', reverse_delete_rule=db.PULL)) 
-    def hash_password(self):
-        self.password = generate_password_hash(self.password).decode('utf8')
+ #   def hash_password(self):
+ #       self.password = generate_password_hash(self.password).decode('utf8')
     
-    def check_password(self, password):
-        return check_password_hash(self.password, password) 
+ #   def check_password(self, password):
+ #       return check_password_hash(self.password, password) 
 
 User.register_delete_rule(Bien, 'added_by', db.CASCADE)
