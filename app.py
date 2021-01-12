@@ -5,6 +5,7 @@ from gestionImmob.routes import initialize_routes
 #from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS, cross_origin
+import os
 
 
 app = Flask(__name__)
@@ -28,5 +29,9 @@ initialize_db(app)
 initialize_routes(api)
 
 #app.run()
+#if __name__ == "__main__":
+#    app.run()
+
 if __name__ == "__main__":
-    app.run()
+    app.run(host=os.getenv('IP', '0.0.0.0'),
+    port=int(os.getenv('PORT', 4444)))
