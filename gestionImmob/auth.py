@@ -21,7 +21,7 @@ class SignupApi(Resource):
      var = user['date_naissance']
      date_time_obj = datetime.datetime.strptime(var, '%d-%m-%Y')
      user['date_naissance'] = date_time_obj
-   #  user.hash_password()
+     user.hash_password()
      user.save()
      id = user.id
      return {'id': str(id)}, 200
@@ -36,11 +36,10 @@ class LoginApi(Resource):
   # connexion d'un user
  def post(self):
    try:
-     print('merhba bik zinoun')
      body = request.get_json()
      user = User.objects.get(pseudo=body.get('pseudo'))
-   #  authorized = user.check_password(str(body.get('password')))
-     authorized = True   ## test only
+     authorized = user.check_password(str(body.get('password')))
+    # authorized = True   ## test only
      if not authorized:
        return {'error': 'Pseudo or password invalid'}, 401
 
@@ -96,7 +95,6 @@ class UserApi(Resource):
   @jwt_required
   @cross_origin()
   def put(self, id):
-    print('ninouch')
     print(request.data)
     body = request.get_json()
     print(body)
@@ -108,7 +106,6 @@ class UserApi(Resource):
   @jwt_required
   @cross_origin()
   def delete(self, id):
-    print("ya hamoudaaaaaaaa")
     h = request.headers
     print(h)
     user = User.objects.get(id=id).delete()

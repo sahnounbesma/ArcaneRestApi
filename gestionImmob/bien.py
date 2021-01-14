@@ -36,7 +36,7 @@ class BiensApi(Resource):
       u["proprietaire"] = b["proprietaire"] 
       biens_tab.append(u)
     biens_tab = json.dumps(biens_tab)  
-    print(biens_tab)
+    #print(biens_tab)
     #biens = Bien.objects().to_json()
     return Response(biens_tab, mimetype="application/json", status=200)
   
@@ -95,7 +95,7 @@ class BienApi(Resource):
     try:
       user_id = get_jwt_identity()
       bien = Bien.objects.get(id=id, added_by=user_id)
-      print('aniiii hnaaa', bien['added_by'])
+      #print('aniiii hnaaa', bien['added_by'])
       #bien = Bien.objects.get(id=id)
       bien.delete()
       return "Suppression de l'utilisateur avec succès", 200
