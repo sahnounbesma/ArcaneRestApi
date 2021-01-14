@@ -21,16 +21,15 @@ jwt = JWTManager(app)
 
 
 app.config['MONGODB_SETTINGS'] = {
-'host': 'mongodb://localhost/gestion-immob'
+#'host': 'mongodb://localhost/gestion-immob'
+'host': 'mongodb+srv://besma:02111996@cluster0.np9be.mongodb.net/gestion-immob?retryWrites=true&w=majority'
 }
+#mongodb+srv://besma:02111996@cluster0.np9be.mongodb.net/gestion-immob?retryWrites=true&w=majority
+
 
 initialize_db(app)
 
 initialize_routes(api)
-
-#app.run()
-#if __name__ == "__main__":
-#    app.run()
 
 if __name__ == "__main__":
     app.run()
