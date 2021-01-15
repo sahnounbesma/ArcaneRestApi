@@ -45,7 +45,6 @@ class BiensApi(Resource):
   @cross_origin()
   def post(self):   
     try:
-      print('hello world')
       user_id = get_jwt_identity()
       print(user_id)
       body = request.get_json()

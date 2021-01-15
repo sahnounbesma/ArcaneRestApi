@@ -78,7 +78,6 @@ class UsersApi(Resource):
   # Renseigner un utilisateur sans auth
   @cross_origin()
   def post(self):
-    print('ninouch')
     print(request.data)
     body = request.get_json()
     var = body['date_naissance']
